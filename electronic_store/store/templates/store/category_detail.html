@@ -1,0 +1,24 @@
+{% extends 'store/base.html' %}
+
+{% block title %}{{ category.name }} - Gadget Galaxy{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>{{ category.name }}</h1>
+        {% if category.description %}
+            <p>{{ category.description }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    {% for product in category.products.all %}
+        {% include 'store/includes/product_card.html' %}
+    {% empty %}
+        <div class="col-12">
+            <p>No products in this category.</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
