@@ -1,10 +1,14 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True, blank=True)
     description = models.TextField(blank=True, null=True)
+
+    def get_absolute_url(self):
+        return reverse('store:product_list', kwargs={'slug': self.slug})
   
 
 
@@ -16,10 +20,26 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
     image = models.ImageField(upload_to='store/products/', blank=True, null=True)
-    image_url = models.URLField(blank=True, null=True)
+    # image_url = models.URLField(blank=True, null=True)
     sku = models.CharField(max_length=50, unique=True)
     date_added = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
+
+
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    # def get_absolute_url(self):
+    #     return reverse('store:product_detail', kwargs={'slug': self.slug})
+    def get_image(self):
+        if self.image:
+            return self.image.url
+        return None
+    
+    
     
 
 

@@ -1,0 +1,20 @@
+{% extends 'store/base.html' %}
+{% block content %}
+
+<h2>Add New Product</h2>
+<form method="POST" enctype="multipart/form-data" action="{% url 'store:new' %}">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Name" required><br>
+    <textarea name="description" placeholder="Description" required></textarea><br>
+    <input type="number" name="price" placeholder="Price" required step="0.01"><br>
+    <input type="number" name="stock" placeholder="Stock" required><br>
+    <input type="text" name="sku" placeholder="SKU" required><br>
+    <select name="category">
+        {% for cat in categories %}
+        <option value="{{ cat.id }}">{{ cat.name }}</option>
+        {% endfor %}
+    </select><br>
+    <input type="file" name="image"><br>
+    <button type="submit">Add Product</button>
+</form>
+{% endblock %}
