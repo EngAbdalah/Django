@@ -16,7 +16,9 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ category.name }}</h5>
                     <p class="card-text">{{ category.description|default:"No description available"|truncatewords:15 }}</p>
-                    <a href="{{ category.get_absolute_url }}" class="btn btn-primary">View Products</a>
+                    <a href="{% url 'store:product_list' %}" class="btn btn-primary">View Products</a> 
+                    <a href="{% url 'store:update_category' pk=category.id %}" class="btn btn-secondary">Edit</a> 
+                    <a href="{% url 'store:delete_category' pk=category.id %}" class="btn btn-danger">Delet</a> 
                 </div>
             </div>
         </div>

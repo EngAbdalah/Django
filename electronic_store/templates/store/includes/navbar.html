@@ -9,10 +9,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'store:category_list' %}">Categories</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'store:new' %}">Add New Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'store:add_category' %}">Add New Categories</a>
+                </li>
                 
             </ul>
             <div class="d-flex">
                 <a href="#" class="btn btn-outline-light me-2">Cart</a>
+                <a class="btn btn-outline-light me-2" href="{% url 'myauth:register' %}">register</a>
+                <a class="btn btn-outline-light me-2" href="{% url 'myauth:login' %}">login</a>
+                <a class="btn btn-outline-light me-2" href="{% url 'myauth:logout' %}">logout</a>
+
+
             </div>
         </div>
     </div>

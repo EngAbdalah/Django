@@ -1,0 +1,14 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Update Category{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>{{ view.object.pk|yesno:"Update Category,Add Category" }}</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+  <a href="{% url 'store:category_list' %}">Back to Category List</a>
+{% endblock %}

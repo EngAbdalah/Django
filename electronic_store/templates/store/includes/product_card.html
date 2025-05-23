@@ -6,6 +6,10 @@
             <p class="card-text">{{ product.description|truncatewords:15 }}</p>
             <p class="text-muted">${{ product.price }}</p>
             <a href="{{ product.get_absolute_url }}" class="btn btn-primary">View Details</a>
+            <a href="{% url 'store:update' product.id %}" class="btn btn-secondary">Update</a>
+            <a href="{% url 'store:delete' product.id %}" class="btn btn-danger">Delete</a>
+
+
         </div>
     </div>
 </div>
